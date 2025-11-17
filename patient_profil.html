@@ -1,0 +1,155 @@
+<?php
+// Patient profile simulation (replace with real DB query)
+$patient = [
+    'fullName' => 'Juwel J.',
+    'age' => 25,
+    'contactNumber' => '017XXXXXXXX',
+    'address' => 'Dhaka, Bangladesh',
+    'medicalCondition' => 'Anemia',
+];
+
+// Blood types example
+$bloodTypes = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patient Profile - Blood Management System</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+* {margin:0; padding:0; box-sizing:border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+:root {--primary-red:#d32f2f; --dark-red:#b71c1c; --primary-blue:#1976d2; --dark-blue:#0d47a1; --light-gray:#f5f5f5; --text-dark:#333; --text-light:#fff; --shadow:0 4px 6px rgba(0,0,0,0.1);}
+body {background-color: var(--light-gray); color: var(--text-dark);}
+.container {width:100%; max-width:1200px; margin:0 auto; padding:0 20px;}
+header {background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%); color: var(--text-light); padding:1rem 0; position: sticky; top:0; z-index:100; box-shadow: var(--shadow);}
+.header-content {display:flex; justify-content:space-between; align-items:center;}
+.logo {display:flex; align-items:center; gap:10px;}
+.logo i {font-size:2rem; color:#ff5252;}
+.logo h1 {font-size:1.8rem; font-weight:700;}
+.logo span {color:#ff5252;}
+.nav-menu {display:flex; list-style:none; gap:1.5rem;}
+.nav-item a {color: var(--text-light); text-decoration:none; font-weight:500; padding:0.5rem 1rem; border-radius:4px; transition: all 0.3s ease;}
+.nav-item a:hover, .nav-item a.active {background-color: rgba(255,255,255,0.2);}
+.form-section {padding:3rem 0; min-height:calc(100vh - 200px);}
+.form-container {background:white; border-radius:10px; box-shadow: var(--shadow); padding:2.5rem; max-width:800px; margin:0 auto;}
+.form-header {text-align:center; margin-bottom:2rem;}
+.form-header h2 {color:var(--dark-blue); font-size:2rem; margin-bottom:0.5rem; position:relative; display:inline-block;}
+.form-header h2::after {content:''; position:absolute; bottom:-10px; left:50%; transform:translateX(-50%); width:80px; height:4px; background:linear-gradient(to right, var(--primary-blue), var(--primary-red));}
+.form-header p {color:#666; margin-top:1rem;}
+.form-group {margin-bottom:1.5rem;}
+.form-group label {display:block; margin-bottom:0.5rem; font-weight:600; color:var(--dark-blue);}
+.form-group input, .form-group textarea, .form-group select {width:100%; padding:0.8rem 1rem; border:1px solid #ddd; border-radius:5px; font-size:1rem; transition:all 0.3s ease;}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {outline:none; border-color:var(--primary-blue); box-shadow:0 0 0 3px rgba(25,118,210,0.2);}
+textarea {min-height:100px; resize:vertical;}
+.btn {padding:0.8rem 1.5rem; border-radius:50px; font-weight:600; transition:all 0.3s ease; border:none; cursor:pointer; font-size:1rem; width:100%;}
+.btn-primary {background-color: var(--primary-red); color: var(--text-light);}
+.btn-primary:hover {background-color: var(--dark-red); transform: translateY(-3px); box-shadow:0 10px 20px rgba(0,0,0,0.2);}
+table {width:100%; border-collapse: collapse; margin-bottom:2rem;}
+table th, table td {border:1px solid #ddd; padding:0.8rem; text-align:left;}
+table th {background-color: var(--primary-blue); color:#fff;}
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+<div class="container header-content">
+<div class="logo"><i class="fas fa-tint"></i><h1>Blood <span>Management</span> System</h1></div>
+<ul class="nav-menu">
+<li class="nav-item"><a href="index.html">Home</a></li>
+<li class="nav-item"><a href="donor.html">Donor</a></li>
+<li class="nav-item"><a href="patient_login.html" class="active">Patient</a></li>
+<li class="nav-item"><a href="admin.html">Admin</a></li>
+<li class="nav-item"><a href="about.html">About</a></li>
+</ul>
+</div>
+</header>
+
+<section class="form-section">
+<div class="container">
+<div class="form-container">
+<div class="form-header">
+<h2>Patient Profile</h2>
+<p>Update your information or request blood</p>
+</div>
+
+<!-- Display current patient information -->
+<table>
+<tr><th>Full Name</th><td><?php echo htmlspecialchars($patient['fullName']); ?></td></tr>
+<tr><th>Age</th><td><?php echo htmlspecialchars($patient['age']); ?></td></tr>
+<tr><th>Contact Number</th><td><?php echo htmlspecialchars($patient['contactNumber']); ?></td></tr>
+<tr><th>Address</th><td><?php echo htmlspecialchars($patient['address']); ?></td></tr>
+<tr><th>Medical Info</th><td><?php echo htmlspecialchars($patient['medicalCondition']); ?></td></tr>
+</table>
+
+<!-- Update Information Form -->
+<form method="POST" action="update_patient.php">
+<div class="form-group">
+<label>Full Name:</label>
+<input type="text" name="fullName" value="<?php echo htmlspecialchars($patient['fullName']); ?>" required>
+</div>
+
+<div class="form-group">
+<label>Age:</label>
+<input type="number" name="age" value="<?php echo htmlspecialchars($patient['age']); ?>" required>
+</div>
+
+<div class="form-group">
+<label>Contact Number:</label>
+<input type="tel" name="contactNumber" value="<?php echo htmlspecialchars($patient['contactNumber']); ?>" required>
+</div>
+
+<div class="form-group">
+<label>Address:</label>
+<input type="text" name="address" value="<?php echo htmlspecialchars($patient['address']); ?>" required>
+</div>
+
+<div class="form-group">
+<label>Medical Information:</label>
+<textarea name="medicalCondition" required><?php echo htmlspecialchars($patient['medicalCondition']); ?></textarea>
+</div>
+
+<button type="submit" name="update" class="btn btn-primary">Update Information</button>
+</form>
+
+<!-- Blood Request Form -->
+<form method="POST" action="request_blood.php" style="margin-top:2rem;">
+<div class="form-group">
+<label>Required Blood Type:</label>
+<select name="bloodType" required>
+<option value="">Select Blood Type</option>
+<?php foreach($bloodTypes as $type): ?>
+<option value="<?php echo $type; ?>"><?php echo $type; ?></option>
+<?php endforeach; ?>
+</select>
+</div>
+
+<div class="form-group">
+<label>Urgency:</label>
+<select name="urgency" required>
+<option value="">Select Urgency</option>
+<option value="Normal">Normal</option>
+<option value="Urgent">Urgent</option>
+<option value="Emergency">Emergency</option>
+</select>
+</div>
+
+<div class="form-group">
+<label>Quantity (Units):</label>
+<input type="number" name="quantity" min="1" required>
+</div>
+
+<button type="submit" class="btn btn-primary">Request Blood</button>
+</form>
+
+</div>
+</div>
+</section>
+
+</body>
+</html>
+
+

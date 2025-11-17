@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Login - Blood Management System</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f5f5f5; color: #333; line-height: 1.6; }
+        .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%); color: #fff; padding: 1rem 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo i { font-size: 2rem; color: #ff5252; }
+        .logo h1 { font-size: 1.8rem; font-weight: 700; }
+        .logo span { color: #ff5252; }
+        .nav-menu { display: flex; list-style: none; gap: 1.5rem; }
+        .nav-item a { color: #fff; text-decoration: none; font-weight: 500; padding: 0.5rem 1rem; border-radius: 4px; transition: all 0.3s ease; }
+        .nav-item a:hover, .nav-item a.active { background-color: rgba(255, 255, 255, 0.2); }
+        .form-section { padding: 3rem 0; min-height: calc(100vh - 200px); display: flex; align-items: center; }
+        .form-container { background: white; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); padding: 2.5rem; width: 100%; max-width: 500px; margin: 0 auto; }
+        .form-header { text-align: center; margin-bottom: 2rem; }
+        .form-header h2 { color: #0d47a1; font-size: 2rem; margin-bottom: 0.5rem; position: relative; display: inline-block; }
+        .form-header h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 80px; height: 4px; background: linear-gradient(to right, #1976d2, #d32f2f); }
+        .form-header p { color: #666; margin-top: 1rem; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: 600; color: #0d47a1; }
+        .form-group input { width: 100%; padding: 0.8rem 1rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; transition: all 0.3s ease; }
+        .form-group input:focus { outline: none; border-color: #1976d2; box-shadow: 0 0 0 3px rgba(25,118,210,0.2); }
+        .btn { padding: 0.8rem 1.5rem; border-radius: 50px; font-weight: 600; border: none; cursor: pointer; font-size: 1rem; text-align: center; width: 100%; background-color: #d32f2f; color: #fff; transition: all 0.3s ease; }
+        .btn:hover { background-color: #b71c1c; transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0,0,0,0.2); }
+        .form-footer { text-align: center; margin-top: 1.5rem; color: #666; }
+        .form-footer a { color: #1976d2; text-decoration: none; }
+        .form-footer a:hover { text-decoration: underline; }
+        footer { background: linear-gradient(135deg, #0d47a1 0%, #0d2c5e 100%); color: #fff; padding: 2rem 0; text-align: center; }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; }
+        .footer-links { list-style: none; display: flex; gap: 1.5rem; }
+        .footer-links a { color: #fff; text-decoration: none; transition: color 0.3s ease; }
+        .footer-links a:hover { color: #ff5252; }
+        @media (max-width: 768px) { .header-content { flex-direction: column; gap: 1rem; } .nav-menu { flex-wrap: wrap; justify-content: center; } .form-container { padding: 1.5rem; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <i class="fas fa-tint"></i>
+                <h1>Blood <span>Management</span> System</h1>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="donor.html">Donor</a></li>
+                <li class="nav-item"><a href="patient.html" class="active">Patient</a></li>
+                <li class="nav-item"><a href="admin.html">Admin</a></li>
+                <li class="nav-item"><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h2>Patient Login</h2>
+                    <p>Login using your registered phone number</p>
+                </div>
+
+                <form action="login_patient.php" method="POST">
+                    <div class="form-group">
+                        <label for="phoneNumber">Phone Number:</label>
+                        <input type="tel" id="phoneNumber" name="phoneNumber" required placeholder="Enter your registered phone number">
+                    </div>
+                    
+                    <button type="submit" class="btn">Login</button>
+                </form>
+
+                <div class="form-footer">
+                    <p>Don't have an account? <a href="patient.html">Register as a patient</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2023 Blood Management System - The Ahsania Mission Cancer & General Hospital (AMCGH). All rights reserved.</p>
+            <ul class="footer-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="donor.html">Donor</a></li>
+                <li><a href="patient.html">Patient</a></li>
+                <li><a href="admin.html">Admin</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
